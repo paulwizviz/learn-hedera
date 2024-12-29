@@ -62,3 +62,29 @@ Hedera operates on Hashgraph, achieves consensus through:
     * Consensus is reached as soon as nodes have sufficient information, without waiting for blocks to be confirmed.
 
 4.	**Transaction Finality**: Transactions achieve instant finality once consensus is reached. There is no need to wait for multiple confirmations as in many blockchain systems.
+
+Here is an illustrative example of the working of Hedera consensus algorithm.
+
+<figure>
+  <img src="../assets/img/gossip.png" alt="Gossiping Protocol">
+  <figcaption>Figure 1 - An illustration of Hedera consensus mechanism.</figcaption>
+</figure>
+
+In the case of Figure 1, let's assume that there are three nodes.
+
+At time T0, Node A issue a transaction (an event plus metadata - E1). At time T1, Node A gossip the E1 to Node B.
+At T2, Node B gossip the E1 to Node C. This network reaches consensus for all nodes pertaining to E1.
+
+At time T0.5, Node A issue another transaction (E2). E2 is also recorded in ledger as following E1. At time T1.5 Node 
+A gossip E2 to Node C. At time T2.5 Node C gossip E2 to Node B. This network reaches consensus for all nodes pertaining
+to E2.
+
+All nodes independently perform the following tasks:
+* The nodes acts as witness to the transactions (e.g. Node A, E1 and E2, etc)
+* Check the order of transactions based on timestamp embedded in the meta data.
+
+> NOTE: In practice, any nodes in the network can initiate transactions. Consensus
+> is reach per transactions, when all nodes have verified each transactions. 
+>
+> This differ from blockchain where transactions are batched into blocks then chained
+> and the chain of blocks is gossip to every other nodes.
