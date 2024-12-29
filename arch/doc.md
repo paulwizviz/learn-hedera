@@ -28,3 +28,37 @@ This section discusses the architecture of Hedera.
     * Transaction fees.
     * Network services like smart contract execution and file storage.
     * Staking to ensure network security.
+
+## Hedera (Hashgraph) vs Blockchain
+
+| Feature               | Blockchain-Based Solution           | Hedera (Hashgraph)               |
+|-----------------------|--------------------------------------|-----------------------------------|
+| **Consensus Mechanism** | Proof of Work (PoW), Proof of Stake (PoS) | Hashgraph with Gossip & Virtual Voting |
+| **Transaction Structure** | Sequential blocks                  | Directed Acyclic Graph (DAG)     |
+| **Finality**           | Probabilistic (requires confirmations) | Instant (asynchronous BFT)       |
+| **Throughput**         | Limited (e.g., Ethereum ~30 TPS)    | High (10,000+ TPS)               |
+| **Governance**         | Decentralised among miners/stakers  | Council of 39 global organisations |
+| **Fairness**           | Potential miner/staker bias         | Timestamp-based ordering         |
+| **Energy Efficiency**  | High (PoW systems are energy-intensive) | Low (no mining required)         |
+| **Scalability**        | Limited by block size and intervals | Highly scalable via DAG structure |
+| **Security**           | Varies by protocol (e.g., 51% attack risk) | Asynchronous BFT (aBFT)          |
+| **Cost**               | Variable and often high             | Predictable and low              |
+
+## Hashgraph Consensus
+
+Hedera operates on Hashgraph, achieves consensus through:
+
+1.	**Gossip Protocol**:
+    * Nodes randomly share transaction information with neighbouring nodes.
+    * Each “gossip” includes both the transaction and metadata about the communication itself (called “gossip about gossip”).
+    * This process ensures rapid and efficient propagation of information across the network.
+
+2.	**Virtual Voting**:
+    * Using the metadata shared during gossip, each node can independently calculate the consensus without direct voting.
+    * Nodes determine the order and validity of transactions by analysing the shared 'gossip history.'
+
+3.	**Asynchronous Byzantine Fault Tolerance (aBFT)**:
+    * Guarantees that the system can reach consensus even if some nodes act maliciously.
+    * Consensus is reached as soon as nodes have sufficient information, without waiting for blocks to be confirmed.
+
+4.	**Transaction Finality**: Transactions achieve instant finality once consensus is reached. There is no need to wait for multiple confirmations as in many blockchain systems.
