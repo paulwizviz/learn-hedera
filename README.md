@@ -7,6 +7,7 @@ This project contains my analysis with working examples to dissect the inner wor
 * [Architecture](./arch/doc.md)
 * [Contract](./contracts/doc.md)
 * [Deployment](./deployment/doc.md)
+* [Key management](./keys/doc.md)
 
 
 ## Disclaimer
