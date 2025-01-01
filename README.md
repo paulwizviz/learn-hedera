@@ -4,6 +4,7 @@ This project contains my analysis with working examples to dissect the inner wor
 
 ## Topics
 
+* [Application Development](./apps/doc.md)
 * [Architecture](./arch/doc.md)
 * [Contract](./contracts/doc.md)
 * [Deployment](./deployment/doc.md)
